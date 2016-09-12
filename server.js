@@ -72,23 +72,25 @@ app.get('/scrape', function(req, res) {
         // This effectively passes the result object to the entry (and the title and link)
         var entry = new Article (result);
           console.log(entry);
+          //check to see if article is unique
           Article.count({'title': entry.title}, function(err, count){
               if(count>0){
                 console.log('Already exists!');
-              }else{
-
-        // now, save that entry to the db
-        entry.save(function(err, doc) {
-          // log any errors
-          if (err) {
-            console.log(err);
-          } 
-          // or log the doc
-          else {
-            console.log(doc);
-          }
-        });
-      }
+              }
+              else{
+                // now, save that entry to the db
+                entry.save(function(err, doc) {
+                  // log any errors
+                  if (err) {
+                    console.log(err);
+                  } 
+                  // or log the doc
+                  else {
+                    console.log(doc);
+                  }
+                });
+               }
+              });
     });
   });
   // tell the browser that we finished scraping the text.
@@ -162,11 +164,6 @@ app.post('/articles/:id', function(req, res){
     }
   });
 });
-
-
-
-
-
 
 
 // listen on port 3000
