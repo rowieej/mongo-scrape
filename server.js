@@ -71,6 +71,11 @@ app.get('/scrape', function(req, res) {
         // Notice the (result):
         // This effectively passes the result object to the entry (and the title and link)
         var entry = new Article (result);
+          console.log(entry);
+          Article.count({'title': entry.title}, function(err, count){
+              if(count>0){
+                console.log('Already exists!');
+              }else{
 
         // now, save that entry to the db
         entry.save(function(err, doc) {
@@ -83,8 +88,7 @@ app.get('/scrape', function(req, res) {
             console.log(doc);
           }
         });
-
-
+      }
     });
   });
   // tell the browser that we finished scraping the text.
