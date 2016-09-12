@@ -89,8 +89,8 @@ app.get('/scrape', function(req, res) {
                     console.log(doc);
                   }
                 });
-               }
-              });
+              }
+          });
     });
   });
   // tell the browser that we finished scraping the text.
