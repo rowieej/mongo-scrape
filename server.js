@@ -22,8 +22,7 @@ app.use(express.static('public'));
 
 
 // Database configuration with mongoose
-//mongoose.connect('mongodb://localhost/week18day3mongoose');
-mongoose.connect('mongodb://localhost/scraper');
+mongoose.connect('mongodb://heroku_phpvczd0:m93eaulujg2oc4c6f87j2ui3v9@ds033056.mlab.com:33056/heroku_phpvczd0');
 var db = mongoose.connection;
 
 // show any mongoose errors
@@ -166,7 +165,7 @@ app.post('/articles/:id', function(req, res){
 });
 
 
-// listen on port 3000
-app.listen(3000, function() {
+// listen on port 3000 |T server PORT
+app.listen(process.env.PORT || 3000, function(){
   console.log('App running on port 3000!');
 });
